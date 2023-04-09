@@ -21,7 +21,18 @@ async function insertNew (req: Request, res: Response, next: NextFunction) {
     }
 }
 
+async function deleteProduct (req: Request, res: Response, next: NextFunction) {
+    try {
+        await productsServices.deleteById(req.body.id);
+        res.sendStatus(202);
+    } catch (error) {
+        next(error);
+        res.sendStatus(500);
+    }
+}
+
 export default {
     getAll,
-    insertNew
+    insertNew,
+    deleteProduct
 }
