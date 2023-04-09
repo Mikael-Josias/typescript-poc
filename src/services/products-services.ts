@@ -14,7 +14,12 @@ async function getAll (): Promise<ProductsEntity[]> {
     return products;
 }
 
+async function deleteById (id: number) : Promise<void> {
+    await productsRepository.deleteById(id);
+}
+
 export default {
     getAll,
-    insertNew
+    insertNew,
+    deleteById
 }

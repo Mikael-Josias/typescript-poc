@@ -12,14 +12,21 @@ function getAll () : Promise<QueryResult<ProductsEntity>> {
     return db.query(`SELECT * FROM products;`);
 }
 
-function getByName (name: string) {
+function getByName (name: string) : Promise<QueryResult<Product>> {
     return db.query(
         `SELECT * FROM products WHERE name LIKE '%' || $1 || '%'`,
         [name]);
 }
 
+function deleteById (id: number) {
+    return db.query(
+        `DELETE FROM products WHERE id = $1`,
+        [id]);
+}
+
 export default {
     getAll,
     getByName,
-    insertNew
+    insertNew,
+    deleteById
 }
